@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 //import './App.css';
 import { test } from '../api/api';
+import { Page } from '../components/Page';
 
 class App extends Component {
   constructor(props) {
@@ -12,16 +13,15 @@ class App extends Component {
       this.setState({message})
     });
   }
-
-  render() {
-    return (
-      <div className="App">
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <p>
+/*        <p>
           This is the test value: {this.state.message}
         </p>
+*/
+  render() {
+    return (
+      <div className="app-container">
+        
+        <Page />
       </div>
     );
   }
