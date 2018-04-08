@@ -2,6 +2,7 @@ const PORT = 8000;
 const io = require('socket.io')();
 const { MongoClient } = require("mongodb");
 const MONGODB_URI = "mongodb://localhost:27017/rose-rocket";
+let totalConnections = 0;
 // const { makeDataHelper } = require("./server/dataHelper");
 // const manyBoxes = require("./server/mockBoxes.json");
 
@@ -13,7 +14,6 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
 
   console.log(`Connected to mongodb: ${MONGODB_URI}`);
   
-
   const getBoxes = (callback) => {
     db.collection("boxes")
       .find()
@@ -34,9 +34,35 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
         callback(null, items);
       });
   }
+  const getUsers = (callback) => {
+    db.collection("users")
+      .find()
+      .toArray((err, users) => {
+        if(err) {
+          return callback(err);
+        }
+        callback(null, users);
+      });
+  }
+
+  let allUsers;
+  getUsers((err, users) => {
+    if (err) throw err;
+    allUsers = users;
+  })
+
+
+  let users = [];
+  const connectUser = () => {
+
+  }
 
   io.on('connection', (client) => {
     console.log("I'm connected!");
+    totalConnections++;
+
+    const currentUser = allUsers[(totalConnections - 1) % allUsers.length];
+    users = users.concat(currentUser);
 
     client.on('updateBoxesState', () => {
       getBoxes((err, boxes) => {
@@ -53,6 +79,11 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
         client.emit('itemsResult', items);
       })
     });
+
+    client.on('updateUsersState', () => {
+      client.emit('usersResult', users);
+    });
+
 
   });  
 });

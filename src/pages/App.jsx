@@ -11,8 +11,8 @@ class App extends Component {
     super(props);
     this.state = {
       boxes: [],
-      items: []
-      // users: "",
+      items: [],
+      users: []
       
     }
     
@@ -22,6 +22,10 @@ class App extends Component {
 
     API.updateItemsState((err, items) =>
       this.setState({items: this.state.items.concat(items)})
+    );
+
+    API.updateUsersState((err, users) =>
+      this.setState({users: this.state.users.concat(users)})
     );
   }
 
@@ -36,12 +40,12 @@ class App extends Component {
         </section>
       );
     }
-          // <UserList users={users}/>
 
     return (
       <div className="app-container">       
         <Page>
           <DisplayCommands />
+          <UserList users={users}/>
           <ItemList items={items}/>
           <BoxList boxes={boxes} />
         </Page>
