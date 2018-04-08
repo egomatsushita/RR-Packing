@@ -1,0 +1,38 @@
+[
+  {
+    "id": "06712e75c1484fe897cdd90246ac4052",
+    "name": "socks",
+    "weight": 1,
+    "box_id": null
+  },
+  {
+    "id": "5a68368839704596b476757443deeafc",
+    "name": "doughnuts",
+    "weight": 1,
+    "box_id": null
+  },
+  {
+    "id": "f61d6425de4f4993bc3cfdcff41bfd84",
+    "name": "laptop",
+    "weight": 4,
+    "box_id": null
+  },
+  {
+    "id": "a4f173aadb5946a8b016875ca36381c8",
+    "name": "watermelon",
+    "weight": 7,
+    "box_id": null
+  },
+  {
+    "id": "430c6e28b3b24720aedf174a35275563",
+    "name": "raspberry pi",
+    "weight": 2,
+    "box_id": null
+  },
+  {
+    "id": "c61fa46fd9634e63a753bd076512a96b",
+    "name": "books",
+    "weight": 12,
+    "box_id": null
+  }
+]
