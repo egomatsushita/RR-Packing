@@ -24,33 +24,39 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
         callback(null, boxes);
       });
   }
+  const getItems = (callback) => {
+    db.collection("items")
+      .find()
+      .toArray((err, items) => {
+        if(err) {
+          return callback(err);
+        }
+        callback(null, items);
+      });
+  }
 
   io.on('connection', (client) => {
     console.log("I'm connected!");
+
     client.on('updateBoxesState', () => {
       getBoxes((err, boxes) => {
         if (err) throw err;
         console.log("loading boxes");
-        client.emit('result', boxes);
+        client.emit('boxesResult', boxes);
       })
     });
-  });
+    
+    client.on('updateItemsState', () => {
+      getItems((err, items) => {
+        if (err) throw err;
+        console.log("loading items");
+        client.emit('itemsResult', items);
+      })
+    });
 
-  
+  });  
 });
 
-  // function getUsers(cb) {
-  //   db.collection("users")
-  //     .find()
-  //     .toArray((err, users) => {
-  //       if(err) {
-  //         return cb(err);
-  //       }
-  //       cb(null, users);
-  //     });
-
-  //   db.close();
-  // }
 
 io.listen(PORT);
 console.log('listening on PORT ', PORT);

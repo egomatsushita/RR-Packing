@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../styles/App.css';
-import { updateBoxesState } from '../api/api';
+import API from '../api/api';
 import { Page } from '../components/Page';
 import { ItemList } from '../components/ItemList';
 import { BoxList } from '../components/BoxList';
@@ -10,14 +10,18 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      boxes: []
-      // items: "",
+      boxes: [],
+      items: []
       // users: "",
       
     }
     
-    updateBoxesState((err, box) =>
-      this.setState({boxes: this.state.boxes.concat(box)})
+    API.updateBoxesState((err, boxes) =>
+      this.setState({boxes: this.state.boxes.concat(boxes)})
+    );
+
+    API.updateItemsState((err, items) =>
+      this.setState({items: this.state.items.concat(items)})
     );
   }
 
@@ -33,13 +37,13 @@ class App extends Component {
       );
     }
           // <UserList users={users}/>
-          // <ItemList items={items}/>
 
     return (
       <div className="app-container">       
         <Page>
-          <BoxList boxes={boxes} />
           <DisplayCommands />
+          <ItemList items={items}/>
+          <BoxList boxes={boxes} />
         </Page>
       </div>
     );

@@ -1,9 +1,19 @@
 import openSocket from 'socket.io-client';
 const socket = openSocket('http://localhost:8000');
 
-function updateBoxesState(cb) {
-  socket.on('result', boxes => cb(null, boxes))
+const updateBoxesState = (cb) => {
+  console.log("UPDATE BOXES STATE");
+  socket.on('boxesResult', boxes => cb(null, boxes))
   socket.emit('updateBoxesState');
 }
 
-export { updateBoxesState }
+const updateItemsState = (cb) => {
+  console.log("UPDATE ITEMS STATE");
+  socket.on('itemsResult', items => cb(null, items))
+  socket.emit('updateItemsState');
+}
+
+export default { 
+  updateBoxesState: updateBoxesState,
+  updateItemsState: updateItemsState
+}
