@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-//import './App.css';
+import '../styles/App.css';
 import { test } from '../api/api';
 import { Page } from '../components/Page';
 
@@ -97,37 +97,49 @@ class App extends Component {
 */
   render() {
     const { boxes, items } = this.state;
+    
     const DisplayBoxes = () => {
       return(
-        <div className="boxes">
-          <ul>
+        <section className="boxes">
+          <p className="p-title">Boxes:</p>
+          <ul className="ul-section ul-items-boxes">
             {this.state.boxes.map(box =>
-              <li>{box.id} {box.name} {box.total_allowed_weight}</li>
+              <li className="li-boxes">  
+                <p>{box.name}</p>
+                <ul>
+                  <li></li>
+                </ul>
+                <p>t.w. 0/{box.total_allowed_weight}</p>
+              </li>
             )}
           </ul>       
-        </div>
+        </section>
       );
     }
 
     const DisplayItems = () => {
       return(
-        <div className="items">
-          <ul>
+        <section className="items">
+          <p className="p-title">Items:</p>
+          <ul className="ul-section ul-items-boxes">
             {this.state.items.map(item =>
-              <li>{item.id} {item.name} {item.weight}</li>)}
+              <li>
+                <p>{item.name}</p>
+                <p>w.{item.weight}</p>
+              </li>)}
           </ul>
-        </div>
+        </section>
       );
     }
 
     const DisplayUsers = () => {
       return(
-        <div className="users">
-          <ul>
-            {this.state.users.map(item =>
-              <li>{item.id} {item.name} {item.weight}</li>)}
+        <section className="users">
+          <p className="p-title">Users Online:</p>
+          <ul className="ul-section ul-users">
+            {this.state.users.map(item => <li>{item.name}</li>)}
           </ul>
-        </div>
+        </section>
       );
     }
 
@@ -135,12 +147,9 @@ class App extends Component {
       <div className="app-container">
         
         <Page>
-          Hello world!
           <DisplayUsers/>
-          <hr/>
-          <DisplayBoxes />
-          <hr/>
           <DisplayItems/>
+          <DisplayBoxes />
         </Page>
       </div>
     );

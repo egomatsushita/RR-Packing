@@ -1,28 +1,105 @@
-.App {
+main {
+  flex: 1 0 auto;
+}
+
+footer {
+  flex: 0 0 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #3a8fea;
+  color: white;
+  
+}
+
+header {
+  flex: 0 0 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8cacea;
+  font-size: 1.3em;
+  border-bottom: 1px solid #52beac;
+  background-color: #808080;
+  margin-bottom: 20px;
+}
+
+header > h3 > span:nth-child(1) {
+  color: #52beac;
+  letter-spacing: 2px;
+}
+
+header > h3 > span:nth-child(2) {
+  color: #fff;
+  letter-spacing: 2px;
+}
+
+main {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+section {
+  flex: 1 1 auto;
+  display: flex;
+  background-color: rgb(128, 128, 128, 0.5);
+  margin: 10px;
+}
+
+section {
+  flex-direction: column;
+  border-radius: 20px;
+}
+
+.p-title {
+  color: #000;
+  font-weight: bold;
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+ul {
+  flex: 1 1 auto;
+  color: #000;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+li {
+  display: flex;
+  flex: 1 1 auto;
 }
 
-.App-title {
-  font-size: 1.5em;
+.ul-section {
+  border-top: 3px solid #fff;
+  padding-top: 30px;
 }
 
-.App-intro {
-  font-size: large;
+.ul-users > li {
+  display: list-item;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.ul-items-boxes {
+  /*padding-top: 20px;*/
+  padding: 20px 0 0 0;
+  list-style: none;
+}
+
+.ul-items-boxes > li {
+  padding: 10px;
+  margin: 10px 20px;
+  border: 1px solid #fff;
+  border-radius: 20px;
+}
+
+.ul-items-boxes > li > p:nth-child(1) {
+  flex: 1 1 70%;
+  align-items: flex-start;
+}
+
+.ul-items-boxes > li > p:nth-child(2) {
+  flex: 1 1 30%;
+  align-items: flex-end;
+}
+
+.li-boxes {
+  display: flex;
+  flex-direction: column;
 }
