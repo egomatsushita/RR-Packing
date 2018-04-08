@@ -1,9 +1,11 @@
-const PORT = 8000;
 const io = require('socket.io')();
 const { MongoClient } = require("mongodb");
 const MONGODB_URI = "mongodb://localhost:27017/rose-rocket";
+const makeDataHelpers = require("./server/dataHelper");
+const PORT = 8000;
 let totalConnections = 0;
-// const { makeDataHelper } = require("./server/dataHelper");
+let allUsers;
+let users = [];
 // const manyBoxes = require("./server/mockBoxes.json");
 
 MongoClient.connect(MONGODB_URI, (err, db) => {
@@ -13,49 +15,11 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
   }
 
   console.log(`Connected to mongodb: ${MONGODB_URI}`);
-  
-  const getBoxes = (callback) => {
-    db.collection("boxes")
-      .find()
-      .toArray((err, boxes) => {
-        if (err) {
-          return callback(err);
-        }
-        callback(null, boxes);
-      });
-  }
-  const getItems = (callback) => {
-    db.collection("items")
-      .find()
-      .toArray((err, items) => {
-        if(err) {
-          return callback(err);
-        }
-        callback(null, items);
-      });
-  }
-  const getUsers = (callback) => {
-    db.collection("users")
-      .find()
-      .toArray((err, users) => {
-        if(err) {
-          return callback(err);
-        }
-        callback(null, users);
-      });
-  }
 
-  let allUsers;
-  getUsers((err, users) => {
+  makeDataHelpers(db).getUsers((err, users) => {
     if (err) throw err;
     allUsers = users;
   })
-
-
-  let users = [];
-  const connectUser = () => {
-
-  }
 
   io.on('connection', (client) => {
     console.log("I'm connected!");
@@ -65,7 +29,7 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
     users = users.concat(currentUser);
 
     client.on('updateBoxesState', () => {
-      getBoxes((err, boxes) => {
+      makeDataHelpers(db).getBoxes((err, boxes) => {
         if (err) throw err;
         console.log("loading boxes");
         client.emit('boxesResult', boxes);
@@ -73,7 +37,7 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
     });
     
     client.on('updateItemsState', () => {
-      getItems((err, items) => {
+      makeDataHelpers(db).getItems((err, items) => {
         if (err) throw err;
         console.log("loading items");
         client.emit('itemsResult', items);

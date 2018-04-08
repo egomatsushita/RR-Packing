@@ -1,6 +1,6 @@
-const OBJECTID = require("mongodb").ObjectID;
+// const OBJECTID = require("mongodb").ObjectID;
 
-module.exports = function makeDataHelpers(db) {
+const makeDataHelpers = (db) => {
   return {
     getUsers: (callback) => {
       db.collection("users")
@@ -11,8 +11,6 @@ module.exports = function makeDataHelpers(db) {
           }
           callback(null, users);
         });
-
-      db.close();
     },
     getBoxes: (callback) => {
       db.collection("boxes")
@@ -23,8 +21,6 @@ module.exports = function makeDataHelpers(db) {
           }
           callback(null, boxes);
         });
-
-      db.close();
     },
     getItems: (callback) => {
       db.collection("items")
@@ -35,8 +31,8 @@ module.exports = function makeDataHelpers(db) {
           }
           callback(null, items);
         });
-
-      db.close();
     }
   }
 }
+
+module.exports = makeDataHelpers;
