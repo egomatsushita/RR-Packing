@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import '../styles/App.css';
 import { test } from '../api/api';
 import { Page } from '../components/Page';
+import { ItemList } from '../components/ItemList';
+import { BoxList } from '../components/BoxList';
+import { UserList } from '../components/UserList';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      //message: "no message",
       boxes: [
         {
           "id": "603f95f25f84427cb6971b6318f93311",
@@ -96,7 +98,7 @@ class App extends Component {
         </p>
 */
   render() {
-    const { boxes, items } = this.state;
+    const { boxes, items, users } = this.state;
 
     const DisplayCommands = () => {
       return (
@@ -107,59 +109,14 @@ class App extends Component {
       );
     }
 
-    const DisplayUsers = () => {
-      return (
-        <section className="users">
-          <p className="p-title">Users Online:</p>
-          <ul className="ul-section ul-users">
-            {this.state.users.map(item => <li>{item.name}</li>)}
-          </ul>
-        </section>
-      );
-    }
-
-    const DisplayBoxes = () => {
-      return (
-        <section className="boxes">
-          <p className="p-title">Boxes:</p>
-          <ul className="ul-section ul-items-boxes">
-            {this.state.boxes.map(box =>
-              <li className="li-boxes">  
-                <p>{box.name}</p>
-                <ul>
-                  <li></li>
-                </ul>
-                <p>t.w. 0/{box.total_allowed_weight}</p>
-              </li>
-            )}
-          </ul>       
-        </section>
-      );
-    }
-
-    const DisplayItems = () => {
-      return (
-        <section className="items">
-          <p className="p-title">Items:</p>
-          <ul className="ul-section ul-items-boxes">
-            {this.state.items.map(item =>
-              <li>
-                <p>{item.name}</p>
-                <p>w.{item.weight}</p>
-              </li>)}
-          </ul>
-        </section>
-      );
-    }
-
     return (
       <div className="app-container">
         
         <Page>
           <DisplayCommands />
-          <DisplayUsers />
-          <DisplayItems />
-          <DisplayBoxes />
+          <UserList users={users}/>
+          <ItemList items={items}/>
+          <BoxList boxes={boxes} />
         </Page>
       </div>
     );
