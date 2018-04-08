@@ -66,7 +66,7 @@ class App extends Component {
           "name": "books",
           "weight": 12,
           "box_id": null
-        },
+        }
       ],
       users: [
         {
@@ -97,9 +97,29 @@ class App extends Component {
 */
   render() {
     const { boxes, items } = this.state;
-    
+
+    const DisplayCommands = () => {
+      return (
+        <section className="commands">
+          <p className="p-title"></p>
+          
+        </section>
+      );
+    }
+
+    const DisplayUsers = () => {
+      return (
+        <section className="users">
+          <p className="p-title">Users Online:</p>
+          <ul className="ul-section ul-users">
+            {this.state.users.map(item => <li>{item.name}</li>)}
+          </ul>
+        </section>
+      );
+    }
+
     const DisplayBoxes = () => {
-      return(
+      return (
         <section className="boxes">
           <p className="p-title">Boxes:</p>
           <ul className="ul-section ul-items-boxes">
@@ -118,7 +138,7 @@ class App extends Component {
     }
 
     const DisplayItems = () => {
-      return(
+      return (
         <section className="items">
           <p className="p-title">Items:</p>
           <ul className="ul-section ul-items-boxes">
@@ -132,23 +152,13 @@ class App extends Component {
       );
     }
 
-    const DisplayUsers = () => {
-      return(
-        <section className="users">
-          <p className="p-title">Users Online:</p>
-          <ul className="ul-section ul-users">
-            {this.state.users.map(item => <li>{item.name}</li>)}
-          </ul>
-        </section>
-      );
-    }
-
     return (
       <div className="app-container">
         
         <Page>
-          <DisplayUsers/>
-          <DisplayItems/>
+          <DisplayCommands />
+          <DisplayUsers />
+          <DisplayItems />
           <DisplayBoxes />
         </Page>
       </div>
