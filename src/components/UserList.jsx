@@ -7,7 +7,7 @@ export const UserList = ({users}) => {
       <p className="p-title">Users Online:</p>
       <ul className="ul-section ul-users">
         {users.map(user => 
-          <User key={user.id} user={user} />
+          <User key={user._id} user={user} />
         )}
       </ul>
     </section>

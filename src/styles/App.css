@@ -108,3 +108,28 @@ li {
   display: flex;
   flex-direction: column;
 }
+
+.ul-items-in-box {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin-bottom: 10px;
+}
+
+.ul-items-in-box span {
+  color: red;
+  opacity: 0.9;
+}
+
+.ul-items-in-box p {
+  margin: 0px;
+}
+
+.ul-items-in-box p:nth-child(1) {
+  flex: 1 1 70%;
+}
+.ul-items-in-box p:nth-child(2) {
+  flex: 1 1 30%;
+  align-items: flex-end;
+  text-align: right;
+}

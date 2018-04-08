@@ -46,7 +46,7 @@ class App extends Component {
           <DisplayCommands />
           <UserList users={users}/>
           <ItemList items={items}/>
-          <BoxList boxes={boxes} />
+          <BoxList boxes={boxes} items={items}/>
         </Page>
       </div>
     );
