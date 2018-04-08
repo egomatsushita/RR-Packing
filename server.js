@@ -82,12 +82,11 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
 
     client.on('updateUsersState', () => {
       client.emit('usersResult', users);
+      client.broadcast.emit('usersResult', users);
     });
-
 
   });  
 });
-
 
 io.listen(PORT);
 console.log('listening on PORT ', PORT);

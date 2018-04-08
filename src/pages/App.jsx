@@ -12,8 +12,7 @@ class App extends Component {
     this.state = {
       boxes: [],
       items: [],
-      users: []
-      
+      users: []    
     }
     
     API.updateBoxesState((err, boxes) =>
@@ -25,7 +24,7 @@ class App extends Component {
     );
 
     API.updateUsersState((err, users) =>
-      this.setState({users: this.state.users.concat(users)})
+      this.setState({users: users})
     );
   }
 
