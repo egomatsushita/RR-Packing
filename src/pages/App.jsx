@@ -39,7 +39,7 @@ class App extends Component {
         </section>
       );
     }
-
+    
     return (
       <div className="app-container">       
         <Page>
