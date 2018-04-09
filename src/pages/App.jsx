@@ -6,6 +6,9 @@ import { ItemList } from '../components/ItemList';
 import { BoxList } from '../components/BoxList';
 import { UserList } from '../components/UserList';
 
+import HTML5Backend from 'react-dnd-html5-backend';
+import { DragDropContext } from 'react-dnd';
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -53,4 +56,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default DragDropContext(HTML5Backend)(App);
