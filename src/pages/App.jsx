@@ -20,21 +20,28 @@ class App extends Component {
     }
     
     API.updateBoxesState((err, boxes) => {
-      const newBoxes = this.state.boxes.concat(boxes);
-      this.setState({boxes: newBoxes})
+      let newBoxes = this.state.boxes;
+      newBoxes = this.state.boxes.concat(boxes);
+      this.setState({boxes: newBoxes});
     });
 
-    API.updateItemsState((err, items) =>
-      this.setState({items: this.state.items.concat(items)})
-    );
+    API.updateItemsState((err, items) => {
+      let newItems = this.state.items;
+      newItems = this.state.items.concat(items);
+      this.setState({items: newItems});
+    });
 
-    API.updateUsersState((err, users) =>
-      this.setState({users: users})
-    );
+    API.updateUsersState((err, users) => {
+      let newUsers = this.state.users;
+      newUsers = users;
+      this.setState({users: newUsers});
+    });
 
-    // API.updateCurrentUser((err, user) =>
-    //   this.setState({user: user})
-    // );
+    API.updateCurrentUser((err, user) => {
+      let currentUser = this.state.currentUser;
+      currentUser = user;
+      this.setState({currentUser: currentUser});
+    });
 
     this.isDropped = this.isDropped.bind(this);
     this.handleDrop = this.handleDrop.bind(this);
@@ -48,7 +55,7 @@ class App extends Component {
   }
 
   render() {
-    const { boxes, items, users } = this.state;
+    const { boxes, items, users, currentUser } = this.state;
 
     const DisplayCommands = () => {
       return (
@@ -61,6 +68,7 @@ class App extends Component {
     return (
       <div className="app-container">       
         <Page>
+          Current user: {currentUser.name}
           <DisplayCommands />
           <UserList users={users}/>
           <ItemList items={items} isDropped={this.isDropped}/>

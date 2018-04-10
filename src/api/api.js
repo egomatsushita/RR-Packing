@@ -16,8 +16,14 @@ const updateUsersState = (cb) => {
   socket.emit('updateUsersState');
 }
 
+const updateCurrentUser = (cb) => {
+  socket.on('currentUserResult', user => cb(null, user))
+  socket.emit('updateCurrentUser');
+}
+
 export default { 
   updateBoxesState: updateBoxesState,
   updateItemsState: updateItemsState,
-  updateUsersState: updateUsersState
+  updateUsersState: updateUsersState,
+  updateCurrentUser: updateCurrentUser
 }

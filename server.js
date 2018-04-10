@@ -56,6 +56,10 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
       client.broadcast.emit('usersResult', onlineUsers);
     });
 
+    client.on('updateCurrentUser', () => {
+      client.emit('currentUserResult', currentUser);
+    })
+
   });  
 });
 
