@@ -3,7 +3,7 @@ import React from 'react';
 export const Footer = () => {
   return(
     <footer>
-      &copy; Copyright 2018 - Eduardo Go Matsushita
+      2018 - &copy; Eduardo Go Matsushita
     </footer>
   );
 }

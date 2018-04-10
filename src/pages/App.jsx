@@ -5,7 +5,6 @@ import { Page } from '../components/Page';
 import { ItemList } from '../components/ItemList';
 import { BoxList } from '../components/BoxList';
 import { UserList } from '../components/UserList';
-
 import HTML5Backend from 'react-dnd-html5-backend';
 import { DragDropContext } from 'react-dnd';
 
@@ -15,7 +14,8 @@ class App extends Component {
     this.state = {
       boxes: [],
       items: [],
-      users: []    
+      users: [],
+      droppedItemId: []    
     }
     
     API.updateBoxesState((err, boxes) =>
@@ -29,6 +29,16 @@ class App extends Component {
     API.updateUsersState((err, users) =>
       this.setState({users: users})
     );
+
+    this.isDropped = this.isDropped.bind(this);
+    this.handleDrop = this.handleDrop.bind(this);
+  }
+
+  isDropped(itemId) {
+    return this.state.droppedItemId.indexOf(itemId) > -1;
+  }
+
+  handleDrop(item) {
   }
 
   render() {
@@ -37,8 +47,7 @@ class App extends Component {
     const DisplayCommands = () => {
       return (
         <section className="commands">
-          <p className="p-title"></p>
-          
+          <p className="p-title"></p>          
         </section>
       );
     }
@@ -48,8 +57,8 @@ class App extends Component {
         <Page>
           <DisplayCommands />
           <UserList users={users}/>
-          <ItemList items={items}/>
-          <BoxList boxes={boxes} items={items}/>
+          <ItemList items={items} isDropped={this.isDropped}/>
+          <BoxList boxes={boxes} items={items} onDrop={this.handleDrop}/>
         </Page>
       </div>
     );

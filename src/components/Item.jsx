@@ -3,7 +3,9 @@ import { DragSource } from 'react-dnd';
 
 const itemSource = {
   beginDrag: function (props, monitor) {
-    return {itemId: 1}
+    return {
+      itemId: props.item.item_id
+    }
   }
 }
 
@@ -14,16 +16,16 @@ function collect(connect, monitor) {
   }
 }
 
-// export const Item = ({item}) => {
 class Item extends Component {
   render() {
     const {connectDragSource, isDragging, item} = this.props;
-    // const item = this.props.item;
+    const opacity = isDragging ? 0.4 : 1;
+    
     return connectDragSource(
-      <li>
-        <p>{item.name}</p>
-        <p>w.{item.weight}</p>
-      </li>
+        <li style={{opacity: opacity}}>
+          <p>{item.name}</p>
+          <p>w.{item.weight}</p>
+        </li>
     );
   }
 }
