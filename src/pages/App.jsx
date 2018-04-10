@@ -15,12 +15,14 @@ class App extends Component {
       boxes: [],
       items: [],
       users: [],
+      currentUser: {},
       droppedItemId: []    
     }
     
-    API.updateBoxesState((err, boxes) =>
-      this.setState({boxes: this.state.boxes.concat(boxes)})
-    );
+    API.updateBoxesState((err, boxes) => {
+      const newBoxes = this.state.boxes.concat(boxes);
+      this.setState({boxes: newBoxes})
+    });
 
     API.updateItemsState((err, items) =>
       this.setState({items: this.state.items.concat(items)})
@@ -29,6 +31,10 @@ class App extends Component {
     API.updateUsersState((err, users) =>
       this.setState({users: users})
     );
+
+    // API.updateCurrentUser((err, user) =>
+    //   this.setState({user: user})
+    // );
 
     this.isDropped = this.isDropped.bind(this);
     this.handleDrop = this.handleDrop.bind(this);
