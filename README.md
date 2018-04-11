@@ -34,8 +34,6 @@ Packing App is a collaboration packing tool which allows users to add an item to
 ## Possible Improvements
 
 - Remove item from a box making it available for drag
-- Add more items and boxes.
-- Assign your own username.
 
 ## Install
 
@@ -43,7 +41,6 @@ Packing App is a collaboration packing tool which allows users to add an item to
 1. Download and install MongoDB: `brew install mongodb`
     - create a directory to store your local DB `sudo mkdir -p /data/db`
     - run mongod (The process that hosts your local db) `sudo mongod` (Note: This process needs to run the entire time in the background while you are developing)
-2. Run the app at least once `mongod`
 
 ## Run
 1. Install all dependencies: `npm install`
