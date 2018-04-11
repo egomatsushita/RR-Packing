@@ -7,6 +7,9 @@ Packing App is a collaboration packing tool which allows users to add an item to
 - Users can see what items are already in the boxes.
 - Users can see all the users that are online on the page.
 - Users can join the collaboration page without any authentication.
+- Users can add an item.
+- Users can add a box.
+- Users can change username.
 - Using a persistence data storage (MongoDB).
 
 ## Screenshots
