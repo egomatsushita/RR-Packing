@@ -29,6 +29,7 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
         if (err) throw err;
         console.log("loading boxes");
         client.emit('boxesResult', boxes);
+        client.broadcast.emit('boxesResult', boxes);
       })
     });
     
@@ -37,6 +38,7 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
         if (err) throw err;
         console.log("loading items");
         client.emit('itemsResult', items);
+        client.broadcast.emit('itemsResult', items);
       })
     });
 
@@ -49,7 +51,15 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
 
     client.on('updateCurrentUser', () => {
       client.emit('currentUserResult', currentUser);
-    })
+    });
+
+    client.on('addNewBox', (newBox) => {
+      makeDataHelpers(db).addBox(newBox)
+    });
+
+    client.on('addNewItem', (newItem) => {
+      makeDataHelpers(db).addItem(newItem)
+    });
 
   });  
 });

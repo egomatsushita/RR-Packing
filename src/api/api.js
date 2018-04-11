@@ -21,9 +21,19 @@ const updateCurrentUser = (cb) => {
   socket.emit('updateCurrentUser');
 }
 
+const addNewBox = (newBox) => {
+  socket.emit('addNewBox', newBox);
+}
+
+const addNewItem = (newItem) => {
+  socket.emit('addNewItem', newItem);
+}
+
 export default { 
   updateBoxesState: updateBoxesState,
   updateItemsState: updateItemsState,
   updateUsersState: updateUsersState,
-  updateCurrentUser: updateCurrentUser
+  updateCurrentUser: updateCurrentUser,
+  addNewBox: addNewBox,
+  addNewItem: addNewItem
 }

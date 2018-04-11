@@ -22,33 +22,26 @@ class App extends Component {
     }
     
     API.updateBoxesState((err, boxes) => {
-      let newBoxes = this.state.boxes;
-      newBoxes = this.state.boxes.concat(boxes);
-      this.setState({boxes: newBoxes});
+      this.setState({boxes: boxes});
     });
 
     API.updateItemsState((err, items) => {
-      let newItems = this.state.items;
-      newItems = this.state.items.concat(items);
-      this.setState({items: newItems});
+      this.setState({items: items});
     });
 
     API.updateUsersState((err, users) => {
-      let newUsers = this.state.users;
-      newUsers = users;
-      this.setState({users: newUsers});
+      this.setState({users: users});
     });
 
     API.updateCurrentUser((err, user) => {
-      let currentUser = this.state.currentUser;
-      currentUser = user;
-      this.setState({currentUser: currentUser});
+      this.setState({currentUser: user});
     });
 
     this.isDropped = this.isDropped.bind(this);
     this.handleDrop = this.handleDrop.bind(this);
     this.changeName = this.changeName.bind(this);
-
+    this.addBox = this.addBox.bind(this);
+    this.addItem = this.addItem.bind(this);
   }
 
   isDropped(itemId) {
@@ -62,13 +55,28 @@ class App extends Component {
     this.setState({ currentUser: { name: username } });
   }
 
+  addBox(newBox) {
+    API.addNewBox(newBox);
+    API.updateBoxesState((err, boxes) => {
+      this.setState({ boxes: boxes });
+    });
+  }
+
+  addItem(newItem) {
+    API.addNewItem(newItem);
+    API.updateItemsState((err, items) => {
+      this.setState({ items: items });
+    });
+
+  }
+
   render() {
     const { boxes, items, users, currentUser } = this.state;
 
     return (
       <div className="app-container">       
         <Page>         
-          <Dashboard currentUser={currentUser} changeName={this.changeName}/>
+          <Dashboard currentUser={currentUser} changeName={this.changeName} addBox={this.addBox} addItem={this.addItem}/>
           <UserList users={users}/>
           <ItemList items={items} isDropped={this.isDropped}/>
           <BoxList boxes={boxes} items={items} onDrop={this.handleDrop}/>

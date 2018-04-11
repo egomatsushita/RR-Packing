@@ -31,6 +31,25 @@ const makeDataHelpers = (db) => {
           }
           callback(null, items);
         });
+    },
+    addBox: (newBox) => {
+      db.collection("boxes")
+      .insert(
+        {
+          name: newBox.name,
+          total_allowed_weight: newBox.total_allowed_weight
+        }
+      )
+    },
+    addItem: (newItem) => {
+      db.collection("items")
+      .insert(
+        {
+          name: newItem.name,
+          weight: newItem.weight,
+          box_id: null
+        }
+      )
     }
   }
 }
