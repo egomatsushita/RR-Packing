@@ -6,9 +6,7 @@ const helperMethods = require('./helperMethods');
 const nameList = require('./server/nameList.json');
 const PORT = 8000;
 let totalConnections = 0;
-// let allUsers;
 let onlineUsers = [];
-// const manyBoxes = require("./server/mockBoxes.json");
 
 MongoClient.connect(MONGODB_URI, (err, db) => {
   if (err) {
@@ -18,11 +16,6 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
 
   console.log(`Connected to mongodb: ${MONGODB_URI}`);
 
-  // makeDataHelpers(db).getUsers((err, users) => {
-  //   if (err) throw err;
-  //   allUsers = users;
-  // })
-
   io.on('connection', (client) => {
     console.log("I'm connected!");
     totalConnections++;
@@ -30,9 +23,7 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
       _id: helperMethods.generateUniqueId(),
       name: nameList[(totalConnections) % nameList.length]
     }
-    // const currentUser = allUsers[(totalConnections - 1) % allUsers.length];
-    // onlineUsers = onlineUsers.concat(currentUser);
-    // users = users.concat(currentUser);
+    
     client.on('updateBoxesState', () => {
       makeDataHelpers(db).getBoxes((err, boxes) => {
         if (err) throw err;

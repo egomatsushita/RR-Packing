@@ -5,6 +5,7 @@ import { Page } from '../components/Page';
 import { ItemList } from '../components/ItemList';
 import { BoxList } from '../components/BoxList';
 import { UserList } from '../components/UserList';
+import { Dashboard } from '../components/Dashboard';
 import HTML5Backend from 'react-dnd-html5-backend';
 import { DragDropContext } from 'react-dnd';
 
@@ -16,7 +17,8 @@ class App extends Component {
       items: [],
       users: [],
       currentUser: {},
-      droppedItemId: []    
+      droppedItemId: [],
+      showTextbox: false    
     }
     
     API.updateBoxesState((err, boxes) => {
@@ -53,23 +55,14 @@ class App extends Component {
 
   handleDrop(item) {
   }
-
+  
   render() {
     const { boxes, items, users, currentUser } = this.state;
 
-    const DisplayCommands = () => {
-      return (
-        <section className="commands">
-          <p className="p-title"></p>          
-        </section>
-      );
-    }
-    
     return (
       <div className="app-container">       
-        <Page>
-          Current user: {currentUser.name}
-          <DisplayCommands />
+        <Page>         
+          <Dashboard currentUser={currentUser}/>
           <UserList users={users}/>
           <ItemList items={items} isDropped={this.isDropped}/>
           <BoxList boxes={boxes} items={items} onDrop={this.handleDrop}/>
