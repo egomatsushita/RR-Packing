@@ -29,6 +29,7 @@ Packing App is a collaboration packing tool which allows users to add an item to
 ## Known Bugs
 
 - Users are able to drag an item, but they cannot drop it.
+- When a user change his username, online user's name isn't updated
 
 ## Possible Improvements
 
