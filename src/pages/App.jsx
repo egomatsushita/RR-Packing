@@ -5,7 +5,7 @@ import { Page } from '../components/Page';
 import { ItemList } from '../components/ItemList';
 import { BoxList } from '../components/BoxList';
 import { UserList } from '../components/UserList';
-import { Dashboard } from '../components/Dashboard';
+import Dashboard from '../components/Dashboard';
 import HTML5Backend from 'react-dnd-html5-backend';
 import { DragDropContext } from 'react-dnd';
 
@@ -47,6 +47,8 @@ class App extends Component {
 
     this.isDropped = this.isDropped.bind(this);
     this.handleDrop = this.handleDrop.bind(this);
+    this.changeName = this.changeName.bind(this);
+
   }
 
   isDropped(itemId) {
@@ -56,13 +58,17 @@ class App extends Component {
   handleDrop(item) {
   }
   
+  changeName(username) {
+    this.setState({ currentUser: { name: username } });
+  }
+
   render() {
     const { boxes, items, users, currentUser } = this.state;
 
     return (
       <div className="app-container">       
         <Page>         
-          <Dashboard currentUser={currentUser}/>
+          <Dashboard currentUser={currentUser} changeName={this.changeName}/>
           <UserList users={users}/>
           <ItemList items={items} isDropped={this.isDropped}/>
           <BoxList boxes={boxes} items={items} onDrop={this.handleDrop}/>
