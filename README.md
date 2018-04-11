@@ -14,7 +14,7 @@ Packing App is a collaboration packing tool which allows users to add an item to
 
 ## Screenshots
 
-### One Online User
+### Online Users
 ![Online-Users](https://github.com/egomatsushita/RR-Packing/blob/master/docs/onlineUsers.png?raw=true)
 
 ### Two Online Users
