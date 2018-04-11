@@ -65,26 +65,38 @@ class Dashboard extends Component {
     return (
       <section className="commands">
         <p className="p-title">Welcome, {currentUser.name}</p>
-        <ul className="ul-section">
+        <ul className="ul-section-add">
           <li>
             <input type="text" onBlur={this.assignName}/>
             <input type="button" value="Change Name" onClick={this.handleChangeName}/>
           </li>
-          <li>
-            <label>Box Name:</label>
-            <input type="text" onBlur={this.assignBoxName}/>
-            <label>Box Weight:</label>
-            <input type="text" onBlur={this.assignBoxTtWeight}/>
-            <input type="button" value="Add Box" onClick={this.handleAddBox}/>            
-          </li>
-          <li>
-            <label>Item Name:</label>
+        </ul>
+        <ul className="ul-section ul-section-add">
+          <p className="p-title">Add Item</p>
+          <li>Item Name:&nbsp;&nbsp;&nbsp;
             <input type="text" onBlur={this.assignItemName}/>
-            <label>Item Weight:</label>
+          </li>
+          <li>Item Weight:&nbsp;
             <input type="text" onBlur={this.assignItemWeight}/>
+          </li>
+          <li className="addBtn">
             <input type="button" value="Add Item" onClick={this.handleAddItem}/>            
           </li>
         </ul>
+        <ul className="ul-section ul-section-add">
+          <p className="p-title">Add Box</p>
+          <li>
+            Box Name:&nbsp;&nbsp;&nbsp;
+            <input type="text" onBlur={this.assignBoxName}/>
+          </li>
+          <li>
+            Box Weight:&nbsp;
+            <input type="text" onBlur={this.assignBoxTtWeight}/>
+          </li>
+          <li className="addBtn">
+            <input type="button" value="Add" onClick={this.handleAddBox}/>            
+          </li>       
+        </ul>        
       </section>
     );
   }

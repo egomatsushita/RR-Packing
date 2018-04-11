@@ -133,3 +133,18 @@ li {
   align-items: flex-end;
   text-align: right;
 }
+
+.ul-section-add {
+  display: flex;
+  flex-direction: column
+}
+
+.ul-section-add > li {
+  flex: 1 1 auto;
+  margin-top: 10px;
+  max-height: 30px;
+}
+
+.addBtn {
+  flex-grow: 1;
+}
