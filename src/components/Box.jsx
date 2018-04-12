@@ -3,9 +3,14 @@ import {DropTarget} from 'react-dnd';
 
 const boxTarget = {
   drop(props, monitor) {
-    const itemId = monitor.getItem().itemId;
+    const itemId = monitor.getItem().item._id;
     const boxId = props.box._id;
     props.onDrop(itemId, boxId);
+  },
+  canDrop(props, monitor) {
+    const item = monitor.getItem().item;
+    let sumWeight = props.totalWeight + item.weight;
+    return sumWeight <= props.box.total_allowed_weight;
   }
 }
 
@@ -13,17 +18,29 @@ function collect(connect, monitor) {
   return {
     connectDropTarget: connect.dropTarget(),
     isOver: monitor.isOver(),
-    canDrop: monitor.canDrop()
+    canDrop: monitor.canDrop(),
   }
 }
 
 class Box extends Component {
+
   render() {
     const { connectDropTarget, isOver, canDrop, box, items, totalWeight } = this.props;
     const itemsInBox = items.filter(item => item.box_id === box._id);
     let boxName = box.name;
     boxName = boxName.charAt(0).toUpperCase() + boxName.slice(1);
-    const background = canDrop ? 'green' : null;
+
+    // if (totalWeight + ) {
+
+    // }
+    const active = isOver && canDrop;
+    let background;
+    if (active) {
+      background = canDrop ? 'green' : null;
+    } else if (canDrop) {
+      background = canDrop ? 'khaki' : null;
+
+    }
 
     return connectDropTarget(
       <li className="li-boxes" style={{backgroundColor: background}}>

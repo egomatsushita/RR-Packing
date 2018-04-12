@@ -4,7 +4,7 @@ import { DragSource } from 'react-dnd';
 const itemSource = {
   beginDrag: (props) => {
     return {
-      itemId: props.item._id
+      item: props.item
     }
   },
   canDrag: (props) => !props.isDropped(props.item._id)
