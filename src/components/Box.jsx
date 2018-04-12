@@ -3,7 +3,9 @@ import {DropTarget} from 'react-dnd';
 
 const boxTarget = {
   drop(props, monitor) {
-    props.onDrop(monitor.getItem())
+    const itemId = monitor.getItem().itemId;
+    const boxId = props.box._id;
+    props.onDrop(itemId, boxId);
   }
 }
 
@@ -21,9 +23,10 @@ class Box extends Component {
     const itemsInBox = items.filter(item => item.box_id === box._id);
     let boxName = box.name;
     boxName = boxName.charAt(0).toUpperCase() + boxName.slice(1);
+    const background = canDrop ? 'green' : null;
 
     return connectDropTarget(
-      <li className="li-boxes">
+      <li className="li-boxes" style={{backgroundColor: background}}>
         <p>{boxName}</p>
         <ul className="ul-items-in-box">
           {itemsInBox.map(item => {
@@ -41,4 +44,4 @@ class Box extends Component {
   }
 }
 
-export default DropTarget('item', boxTarget, collect)(Box);
+export default DropTarget('Item', boxTarget, collect)(Box);

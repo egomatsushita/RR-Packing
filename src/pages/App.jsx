@@ -18,7 +18,7 @@ class App extends Component {
       users: [],
       currentUser: {},
       droppedItemId: [],
-      showTextbox: false    
+      // showTextbox: false    
     }
     
     API.updateBoxesState((err, boxes) => {
@@ -48,7 +48,19 @@ class App extends Component {
     return this.state.droppedItemId.indexOf(itemId) > -1;
   }
 
-  handleDrop(item) {
+  handleDrop(itemId, boxId) {
+    let index;
+    const items = this.state.items;
+    for (let i = 0; i < items.length; i++) {
+      if (items[i]._id === itemId) {
+        index = i;
+      }
+    }
+
+    let newState = Object.assign({}, this.state);
+    newState.items[index].box_id = boxId;
+    newState.droppedItemId.push(itemId);
+    this.setState(newState);
   }
   
   changeName(username) {

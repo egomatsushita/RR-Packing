@@ -7,7 +7,7 @@ export const ItemList = ({items, isDropped}) => {
       <p className="p-title">Items:</p>
       <ul className="ul-section ul-items-boxes">
         {items.map(item =>
-          <Item key={item._id} item={item} isDropped={isDropped(item._id)}/>
+          <Item key={item._id} item={item} isDropped={isDropped}/>
         )}
       </ul>
     </section>
