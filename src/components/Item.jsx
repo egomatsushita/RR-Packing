@@ -2,17 +2,12 @@ import React, { Component } from 'react';
 import { DragSource } from 'react-dnd';
 
 const itemSource = {
-  beginDrag: function (props) {
+  beginDrag: (props) => {
     return {
       itemId: props.item._id
     }
   },
-
-  // endDrag: function (props) {
-  //   return {
-  //     result: props.isDropped(props.item.item_id)
-  //   }
-  // }
+  canDrag: (props) => !props.isDropped(props.item._id)
 }
 
 function collect(connect, monitor) {
