@@ -26,6 +26,7 @@ class Dashboard extends Component {
   handleChangeName(e) {
     e.preventDefault();
     this.props.changeName(this.currentUsername);
+    this.refs.newUsername.value = "";
   }
 
   assignBoxName(e) {
@@ -49,7 +50,9 @@ class Dashboard extends Component {
     this.props.addBox({
       name: this.boxName,
       total_allowed_weight: +this.boxTTWeight
-    })
+    });
+    this.refs.newBoxName.value = "";
+    this.refs.newBoxWeight.value = "";
   }
 
   handleAddItem(e) {
@@ -57,7 +60,9 @@ class Dashboard extends Component {
     this.props.addItem({
       name: this.itemName,
       weight: +this.itemWeight
-    })
+    });
+    this.refs.newItemName.value = "";
+    this.refs.newItemWeight.value = "";
   }
 
   render() {
@@ -65,19 +70,19 @@ class Dashboard extends Component {
     return (
       <section className="commands">
         <p className="p-title">Welcome, {currentUser.name}</p>
-        <ul className="ul-section-add">
+        <ul className="ul-section ul-section-add">
           <li>
-            <input type="text" onBlur={this.assignName}/>
+            <input type="text" ref="newUsername" onBlur={this.assignName}/>
             <input type="button" value="Change Name" onClick={this.handleChangeName}/>
           </li>
         </ul>
         <ul className="ul-section ul-section-add">
           <p className="p-title">Add Item</p>
           <li>Item Name:&nbsp;&nbsp;&nbsp;
-            <input type="text" onBlur={this.assignItemName}/>
+            <input type="text" ref="newItemName" onBlur={this.assignItemName}/>
           </li>
           <li>Item Weight:&nbsp;
-            <input type="text" onBlur={this.assignItemWeight}/>
+            <input type="text" ref="newItemWeight" onBlur={this.assignItemWeight}/>
           </li>
           <li className="addBtn">
             <input type="button" value="Add Item" onClick={this.handleAddItem}/>            
@@ -87,14 +92,14 @@ class Dashboard extends Component {
           <p className="p-title">Add Box</p>
           <li>
             Box Name:&nbsp;&nbsp;&nbsp;
-            <input type="text" onBlur={this.assignBoxName}/>
+            <input type="text" ref="newBoxName"onBlur={this.assignBoxName}/>
           </li>
           <li>
             Box Weight:&nbsp;
-            <input type="text" onBlur={this.assignBoxTtWeight}/>
+            <input type="text" ref="newBoxWeight" onBlur={this.assignBoxTtWeight}/>
           </li>
           <li className="addBtn">
-            <input type="button" value="Add" onClick={this.handleAddBox}/>            
+            <input type="button" value="Add Box" onClick={this.handleAddBox}/>            
           </li>       
         </ul>        
       </section>
