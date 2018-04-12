@@ -48,7 +48,7 @@ class Dashboard extends Component {
     e.preventDefault();
     this.props.addBox({
       name: this.boxName,
-      total_allowed_weight: this.boxTTWeight
+      total_allowed_weight: +this.boxTTWeight
     })
   }
 
@@ -56,7 +56,7 @@ class Dashboard extends Component {
     e.preventDefault();
     this.props.addItem({
       name: this.itemName,
-      weight: this.itemWeight
+      weight: +this.itemWeight
     })
   }
 
