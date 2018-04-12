@@ -29,11 +29,16 @@ const addNewItem = (newItem) => {
   socket.emit('addNewItem', newItem);
 }
 
+const updateItemData = (itemId, boxId) => {
+  socket.emit('updateItemData', itemId, boxId);
+} 
+
 export default { 
   updateBoxesState: updateBoxesState,
   updateItemsState: updateItemsState,
   updateUsersState: updateUsersState,
   updateCurrentUser: updateCurrentUser,
   addNewBox: addNewBox,
-  addNewItem: addNewItem
+  addNewItem: addNewItem,
+  updateItemData: updateItemData
 }

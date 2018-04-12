@@ -27,6 +27,7 @@ class App extends Component {
     API.updateItemsState((err, items) => {
       let itemsIdInBox = items.filter(item => item.box_id).map(item => item._id);
       this.setState({droppedItemId: itemsIdInBox});
+      
       this.setState({items: items});
     });
 
@@ -62,6 +63,8 @@ class App extends Component {
     newState.items[index].box_id = boxId;
     newState.droppedItemId.push(itemId);
     this.setState(newState);
+
+    API.updateItemData(itemId, boxId);
   }
   
   changeName(username) {
@@ -80,7 +83,6 @@ class App extends Component {
     API.updateItemsState((err, items) => {
       this.setState({ items: items });
     });
-
   }
 
   render() {

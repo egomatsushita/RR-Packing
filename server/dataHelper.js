@@ -1,4 +1,4 @@
-// const OBJECTID = require("mongodb").ObjectID;
+const OBJECTID = require("mongodb").ObjectID;
 
 const makeDataHelpers = (db) => {
   return {
@@ -34,22 +34,29 @@ const makeDataHelpers = (db) => {
     },
     addBox: (newBox) => {
       db.collection("boxes")
-      .insert(
-        {
-          name: newBox.name,
-          total_allowed_weight: newBox.total_allowed_weight
-        }
-      )
+        .insert(
+          {
+            name: newBox.name,
+            total_allowed_weight: newBox.total_allowed_weight
+          }
+        );
     },
     addItem: (newItem) => {
       db.collection("items")
-      .insert(
-        {
-          name: newItem.name,
-          weight: newItem.weight,
-          box_id: null
-        }
-      )
+        .insert(
+          {
+            name: newItem.name,
+            weight: newItem.weight,
+            box_id: null
+          }
+        );
+    },
+    updateItemData: (itemId, boxId) => {
+      db.collection("items")
+        .update(
+          { _id: OBJECTID(itemId) },
+          { $set: { box_id: boxId } }
+        );
     }
   }
 }

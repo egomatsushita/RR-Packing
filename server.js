@@ -54,11 +54,15 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
     });
 
     client.on('addNewBox', (newBox) => {
-      makeDataHelpers(db).addBox(newBox)
+      makeDataHelpers(db).addBox(newBox);
     });
 
     client.on('addNewItem', (newItem) => {
-      makeDataHelpers(db).addItem(newItem)
+      makeDataHelpers(db).addItem(newItem);
+    });
+
+    client.on('updateItemData', (itemId, boxId) => {
+      makeDataHelpers(db).updateItemData(itemId, boxId);
     });
 
   });  
