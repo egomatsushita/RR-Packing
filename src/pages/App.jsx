@@ -44,10 +44,22 @@ class App extends Component {
     this.changeName = this.changeName.bind(this);
     this.addBox = this.addBox.bind(this);
     this.addItem = this.addItem.bind(this);
+    this.handleRemove = this.handleRemove.bind(this);
   }
 
   isDropped(itemId) {
     return this.state.droppedItemId.indexOf(itemId) > -1;
+  }
+
+  getItemIndex(itemId) {
+    let index;
+    const items = this.state.items;
+    for (let i = 0; i < items.length; i++) {
+      if (items[i]._id === itemId) {
+        index = i;
+      }
+    }
+    return index;
   }
 
   handleDrop(itemId, boxId) {
@@ -62,6 +74,18 @@ class App extends Component {
     let newState = Object.assign({}, this.state);
     newState.items[index].box_id = boxId;
     newState.droppedItemId.push(itemId);
+    this.setState(newState);
+
+    API.updateItemData(itemId, boxId);
+  }
+
+  handleRemove(itemId) {
+    const index = this.getItemIndex(itemId);
+    const boxId = null;
+
+    let newState = Object.assign({}, this.state);
+    newState.items[index].box_id = null;
+    newState.droppedItemId = newState.droppedItemId.filter(droppedItemId => droppedItemId != itemId);
     this.setState(newState);
 
     API.updateItemData(itemId, boxId);
@@ -94,7 +118,7 @@ class App extends Component {
           <Dashboard currentUser={currentUser} changeName={this.changeName} addBox={this.addBox} addItem={this.addItem}/>
           <UserList users={users}/>
           <ItemList items={items} isDropped={this.isDropped}/>
-          <BoxList boxes={boxes} items={items} onDrop={this.handleDrop}/>
+          <BoxList boxes={boxes} items={items} onDrop={this.handleDrop} onRemove={this.handleRemove}/>
         </Page>
       </div>
     );
