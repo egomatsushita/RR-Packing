@@ -24,11 +24,12 @@ function collect(connect, monitor) {
 
 class Item extends Component {
   render() {
-    const {connectDragSource, isDragging, item} = this.props;
+    const {connectDragSource, isDragging, item, isDropped} = this.props;
     const opacity = isDragging ? 0.4 : 1;
+    const backgroundColor = isDropped(item._id) ? '#80808090' : null;
     
     return connectDragSource(
-        <li style={{opacity: opacity}}>
+        <li style={{opacity: opacity, backgroundColor: backgroundColor}}>
           <p>{item.name}</p>
           <p>w.{item.weight}</p>
         </li>

@@ -18,7 +18,6 @@ class App extends Component {
       users: [],
       currentUser: {},
       droppedItemId: [],
-      // showTextbox: false    
     }
     
     API.updateBoxesState((err, boxes) => {
@@ -26,6 +25,8 @@ class App extends Component {
     });
 
     API.updateItemsState((err, items) => {
+      let itemsIdInBox = items.filter(item => item.box_id).map(item => item._id);
+      this.setState({droppedItemId: itemsIdInBox});
       this.setState({items: items});
     });
 
