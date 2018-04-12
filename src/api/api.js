@@ -21,6 +21,10 @@ const updateCurrentUser = (cb) => {
   socket.emit('updateCurrentUser');
 }
 
+const updateCurUser = (currentUser, newName) => {
+  socket.emit('updateCurUser', currentUser, newName);
+}
+
 const addNewBox = (newBox) => {
   socket.emit('addNewBox', newBox);
 }
@@ -40,5 +44,6 @@ export default {
   updateCurrentUser: updateCurrentUser,
   addNewBox: addNewBox,
   addNewItem: addNewItem,
-  updateItemData: updateItemData
+  updateItemData: updateItemData,
+  updateCurUser: updateCurUser
 }

@@ -53,6 +53,11 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
       client.emit('currentUserResult', currentUser);
     });
 
+    client.on('updateCurUser', (curUser, newName) => {
+      currentUser.name = newName;
+      onlineUsers = onlineUsers.filter(user => user._id !== curUser._id);
+    });
+
     client.on('addNewBox', (newBox) => {
       makeDataHelpers(db).addBox(newBox);
     });

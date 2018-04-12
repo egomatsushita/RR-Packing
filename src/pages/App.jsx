@@ -45,6 +45,7 @@ class App extends Component {
     this.addBox = this.addBox.bind(this);
     this.addItem = this.addItem.bind(this);
     this.handleRemove = this.handleRemove.bind(this);
+    this.changeName = this.changeName.bind(this);
   }
 
   isDropped(itemId) {
@@ -63,36 +64,36 @@ class App extends Component {
   }
 
   handleDrop(itemId, boxId) {
-    let index;
-    const items = this.state.items;
-    for (let i = 0; i < items.length; i++) {
-      if (items[i]._id === itemId) {
-        index = i;
-      }
-    }
-
-    let newState = Object.assign({}, this.state);
-    newState.items[index].box_id = boxId;
-    newState.droppedItemId.push(itemId);
-    this.setState(newState);
+    let index = this.getItemIndex(itemId);
 
     API.updateItemData(itemId, boxId);
+
+    API.updateItemsState((err, items) => {
+      let itemsIdInBox = items.filter(item => item.box_id).map(item => item._id);
+      this.setState({ droppedItemId: itemsIdInBox });
+      this.setState({ items: items });
+    });
   }
 
   handleRemove(itemId) {
     const index = this.getItemIndex(itemId);
     const boxId = null;
 
-    let newState = Object.assign({}, this.state);
-    newState.items[index].box_id = null;
-    newState.droppedItemId = newState.droppedItemId.filter(droppedItemId => droppedItemId != itemId);
-    this.setState(newState);
-
     API.updateItemData(itemId, boxId);
+
+    API.updateItemsState((err, items) => {
+      let itemsIdInBox = items.filter(item => item.box_id).map(item => item._id);
+      this.setState({ droppedItemId: itemsIdInBox });
+      this.setState({ items: items });
+    });
   }
   
   changeName(username) {
     this.setState({ currentUser: { name: username } });
+    API.updateCurUser(this.state.currentUser, username);
+    API.updateUsersState((err, users) => {
+      this.setState({ users: users });
+    });
   }
 
   addBox(newBox) {
