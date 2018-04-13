@@ -9,8 +9,12 @@ const boxTarget = {
   },
   canDrop(props, monitor) {
     const item = monitor.getItem().item;
-    let sumWeight = props.totalWeight + item.weight;
-    return sumWeight <= props.box.total_allowed_weight;
+    const totalWeight = props.totalWeight;
+    const itemWeight = item.weight;
+    const totalAllowedWeight = props.box.total_allowed_weight;
+    let sumWeight = totalWeight + itemWeight;
+    
+    return sumWeight <= totalAllowedWeight;
   }
 }
 
@@ -27,6 +31,7 @@ class Box extends Component {
     super(props);
     this.handleRemoveClick = this.handleRemoveClick.bind(this);
   }
+
   handleRemoveClick(itemId) {
     this.props.onRemove(itemId);
   }
@@ -34,9 +39,9 @@ class Box extends Component {
   render() {
     const { connectDropTarget, isOver, canDrop, box, items, totalWeight } = this.props;
     const itemsInBox = items.filter(item => item.box_id === box._id);
+    const click = this.handleRemoveClick;
     let boxName = box.name;
     boxName = boxName.charAt(0).toUpperCase() + boxName.slice(1);
-    const click = this.handleRemoveClick;
 
     const active = isOver && canDrop;
     let background;
@@ -53,7 +58,9 @@ class Box extends Component {
           {itemsInBox.map(item => {
             return (
               <li key={item._id}>
-                <p><span onClick={() => click(item._id)}>x</span>&nbsp;{item.name}</p>
+                <p>
+                  <span onClick={() => click(item._id)}>x</span>&nbsp;{item.name}
+                </p>
                 <p>{item.weight}</p>
               </li>
             );

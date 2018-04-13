@@ -22,7 +22,7 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
     let currentUser = {
       _id: helperMethods.generateUniqueId(),
       name: nameList[(totalConnections) % nameList.length]
-    }
+    };
     
     client.on('updateBoxesState', () => {
       makeDataHelpers(db).getBoxes((err, boxes) => {
@@ -30,7 +30,7 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
         console.log("loading boxes");
         client.emit('boxesResult', boxes);
         client.broadcast.emit('boxesResult', boxes);
-      })
+      });
     });
     
     client.on('updateItemsState', () => {
@@ -39,7 +39,7 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
         console.log("loading items");
         client.emit('itemsResult', items);
         client.broadcast.emit('itemsResult', items);
-      })
+      });
     });
 
     client.on('updateUsersState', () => {

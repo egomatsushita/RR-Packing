@@ -52,6 +52,15 @@ section {
 
 }
 
+.btn {
+  background-color: #808080;
+  opacity: 0.9;
+  border-radius: 10px;
+  color: #fff;
+  width: 7rem;
+  height: 1.5rem;
+}
+
 .p-title {
   color: #000;
   font-weight: bold;
@@ -59,7 +68,7 @@ section {
 }
 
 ul {
-  flex: 1 1 auto;
+  /*flex: 1 1 auto;*/
   color: #000;
 }
 
@@ -78,7 +87,6 @@ li {
 }
 
 .ul-items-boxes {
-  /*padding-top: 20px;*/
   padding: 20px 0 0 0;
   list-style: none;
 }
@@ -136,15 +144,35 @@ li {
 
 .ul-section-add {
   display: flex;
-  flex-direction: column
+  flex-direction: column;
+  padding: 0px;
+  /*align-items: stretch;*/
 }
 
 .ul-section-add > li {
-  flex: 1 1 auto;
-  margin-top: 10px;
+  display: flex;
+  margin: 10px 20px;
   max-height: 30px;
 }
 
+.ul-section-add > li > label{
+  flex: 0 0 35%;
+}
+
+.ul-section-add > li > input{
+  flex: 0 0 65%;
+}
+
+.add-username > input:nth-child(1) {
+  flex: 0 0 65%;
+}
+
+.add-username > input:nth-child(2) {
+  flex: 0 0 35%;
+}
+
 .addBtn {
-  flex-grow: 1;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 20px;
 }

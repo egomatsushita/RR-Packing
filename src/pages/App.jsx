@@ -27,7 +27,6 @@ class App extends Component {
     API.updateItemsState((err, items) => {
       let itemsIdInBox = items.filter(item => item.box_id).map(item => item._id);
       this.setState({droppedItemId: itemsIdInBox});
-      
       this.setState({items: items});
     });
 
@@ -52,22 +51,8 @@ class App extends Component {
     return this.state.droppedItemId.indexOf(itemId) > -1;
   }
 
-  getItemIndex(itemId) {
-    let index;
-    const items = this.state.items;
-    for (let i = 0; i < items.length; i++) {
-      if (items[i]._id === itemId) {
-        index = i;
-      }
-    }
-    return index;
-  }
-
   handleDrop(itemId, boxId) {
-    let index = this.getItemIndex(itemId);
-
     API.updateItemData(itemId, boxId);
-
     API.updateItemsState((err, items) => {
       let itemsIdInBox = items.filter(item => item.box_id).map(item => item._id);
       this.setState({ droppedItemId: itemsIdInBox });
@@ -76,11 +61,9 @@ class App extends Component {
   }
 
   handleRemove(itemId) {
-    const index = this.getItemIndex(itemId);
     const boxId = null;
 
     API.updateItemData(itemId, boxId);
-
     API.updateItemsState((err, items) => {
       let itemsIdInBox = items.filter(item => item.box_id).map(item => item._id);
       this.setState({ droppedItemId: itemsIdInBox });
@@ -89,7 +72,9 @@ class App extends Component {
   }
   
   changeName(username) {
-    this.setState({ currentUser: { name: username } });
+    let updatedUser = this.state.currentUser;
+    updatedUser.name = username;
+    this.setState({currentUser: updatedUser});
     API.updateCurUser(this.state.currentUser, username);
     API.updateUsersState((err, users) => {
       this.setState({ users: users });
@@ -116,10 +101,20 @@ class App extends Component {
     return (
       <div className="app-container">       
         <Page>         
-          <Dashboard currentUser={currentUser} changeName={this.changeName} addBox={this.addBox} addItem={this.addItem}/>
+          <Dashboard 
+            currentUser={currentUser} 
+            changeName={this.changeName} 
+            addBox={this.addBox} 
+            addItem={this.addItem}
+          />
           <UserList users={users}/>
           <ItemList items={items} isDropped={this.isDropped}/>
-          <BoxList boxes={boxes} items={items} onDrop={this.handleDrop} onRemove={this.handleRemove}/>
+          <BoxList 
+            boxes={boxes} 
+            items={items} 
+            onDrop={this.handleDrop} 
+            onRemove={this.handleRemove}
+          />
         </Page>
       </div>
     );

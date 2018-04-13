@@ -12,7 +12,15 @@ export const BoxList = ({boxes, items, onDrop, onRemove}) => {
               .filter(item => item.box_id === box._id)
               .reduce((sum, item) => sum + parseInt(item.weight, 10), 0);
           
-          return <Box key={box._id} box={box} items={items} totalWeight={totalWeight} onDrop={onDrop} onRemove={onRemove}/>
+          return (
+            <Box 
+              key={box._id} 
+              box={box} 
+              items={items} 
+              totalWeight={totalWeight} 
+              onDrop={onDrop} 
+              onRemove={onRemove} 
+            />)
         })}
       </ul>
     </section>
