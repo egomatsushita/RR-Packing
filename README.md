@@ -8,7 +8,7 @@ Packing App is a collaboration packing tool which allows users to add an item to
 - Users can see what items are available for packing.
 - Users can see all the users that are online on the page.
 - Users can drag an item from the list of available items to any box that hasn't exceed its weight limit.
-- Users can see which boxes are available to drop by khaki color, and once the drag item is over the available box the box color change to green.
+- Users can see which boxes are available to drop signed by khaki color, and once the drag item is over the available box the box color change to green.
 - Users can remove item from a box making it available for drag.
 - Users can join the collaboration page without any authentication.
 - Users can add more items.
@@ -19,22 +19,22 @@ Packing App is a collaboration packing tool which allows users to add an item to
 ## Screenshots
 
 ### Home
-![Home](*)
+![Home](https://github.com/egomatsushita/RR-Packing/blob/master/docs/rr-new-home.png?raw=true)
 
 ### Edit Username | Add Item | Add Box
-![Edit-Username-Add-Item-Add-Box](*)
+![Edit-Username-Add-Item-Add-Box](https://github.com/egomatsushita/RR-Packing/blob/master/docs/rr-new-user-item-box.gif?raw=true)
 
 ### Drag and Drop Items
-![Drag-and-Drop-Items](*)
+![Drag-and-Drop-Items](https://github.com/egomatsushita/RR-Packing/blob/master/docs/rr-new-add-items.gif?raw=true)
 
 ### Remove Items
-![Remove-Items](*)
+![Remove-Items](https://github.com/egomatsushita/RR-Packing/blob/master/docs/rr-new-remove-items.gif?raw=true)
 
 ### Two Online Users - Edit Username | Add Item | Add Box
-![Two-Online-Users-Edit-Username-Add-Item-Add-Box](*)
+![Two-Online-Users-Edit-Username-Add-Item-Add-Box](https://github.com/egomatsushita/RR-Packing/blob/master/docs/rr-new-2u-user-item-box.gif?raw=true)
 
 ### Two Online Users - Drag and Drop Items | Remove Items
-![Two-Online-Users-Drag-and-Drop-Items-Remove-Items](*)
+![Two-Online-Users-Drag-and-Drop-Items-Remove-Items](https://github.com/egomatsushita/RR-Packing/blob/master/docs/rr-new-2u-add-remove-items.gif?raw=true)
 
 
 ## Possible Improvements
