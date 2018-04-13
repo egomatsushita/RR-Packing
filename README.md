@@ -8,6 +8,7 @@ Packing App is a collaboration packing tool which allows users to add an item to
 - Users can see what items are available for packing.
 - Users can see all the users that are online on the page.
 - Users can drag an item from the list of available items to any box that hasn't exceed its weight limit.
+- Users can see which boxes are available to drop by khaki color, and once the drag item is over the available box the box color change to green.
 - Users can remove item from a box making it available for drag.
 - Users can join the collaboration page without any authentication.
 - Users can add more items.
