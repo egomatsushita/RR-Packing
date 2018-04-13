@@ -53,7 +53,7 @@ section {
 }
 
 .btn {
-  background-color: #808080;
+  background-color: #52beac;
   opacity: 0.9;
   border-radius: 10px;
   color: #fff;
@@ -175,4 +175,9 @@ li {
   display: flex;
   justify-content: flex-end;
   margin-right: 20px;
+}
+
+.commands {
+  background-color: #808080;
+  opacity: 0.9;
 }
