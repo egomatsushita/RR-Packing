@@ -1,6 +1,6 @@
 # RR - Packing
 
-Packing App is a collaboration packing tool which allows users to add an item to a box or remove it without having to register accounts. It will use React, React-DnD, Websockets, Babel, and MongoDB.
+Packing App is a collaboration packing tool which allows users to add an item to a box or remove it without having to register accounts. It will use React, React-DnD, Socket.IO, Babel, and MongoDB.
 
 ## Main Features
 
